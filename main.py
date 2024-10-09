@@ -3,6 +3,8 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import matplotlib.pyplot as plt
 import plotly.express as px
 
+from sklearn.preprocessing import MinMaxScaler
+
 #----------------------------------------------------------------------------------------------
 #โหลดข่้อมูล
 file_path = './Sleep_health_and_lifestyle_dataset.csv'
@@ -27,4 +29,13 @@ numeric_col = ['Age', 'Sleep Duration', 'Quality of Sleep', 'Physical Activity L
 
 fig = px.box(df, y=numeric_col, title="Outlier Detection in Numeric Columns")
 fig.show()'''
+
+#วิเคราะห์ความสัมพันธ์ระหว่างคุณภาพการนอนหลับ, ระยะเวลาการนอนหลับ, และระดับความเครียด โดยแบ่งกลุ่มตามโรคนอนไม่หลับ
+fig = px.scatter(df, x='Sleep Duration', y='Stress Level', color='Sleep Disorder', 
+                 title='Stress Level vs. Sleep Duration by Sleep Disorder')
+fig.show()
+
+fig = px.scatter(df, x='Quality of Sleep', y='Heart Rate', color='Sleep Disorder', 
+                 title='Heart Rate vs. Quality of Sleep by Sleep Disorder')
+fig.show()
 #----------------------------------------------------------------------------------------------
