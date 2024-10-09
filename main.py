@@ -3,8 +3,12 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import matplotlib.pyplot as plt
 import plotly.express as px
 
+#----------------------------------------------------------------------------------------------
+#โหลดข่้อมูล
 file_path = './Sleep_health_and_lifestyle_dataset.csv'
 df = pd.read_csv(file_path)
+#----------------------------------------------------------------------------------------------
+#เตรียม data
 # df.head() #แสดงข้อมูล 5 ชุดแรก
 # df.columns #แสดงชื่อคอลัมน์
 # df.isnull().sum()
@@ -15,6 +19,12 @@ df = pd.read_csv(file_path)
 #df[df['Sleep Disorder'].isna()] #ใช้เพื่อ กรองและเลือกแถว จาก DataFrame df ที่คอลัมน์ 'Sleep Disorder' มีค่าเป็น NaN
 #df['Sleep Disorder'].unique() #ใช้เพื่อ แสดงค่าเฉพาะ ทั้งหมดในคอลัมน์ 'Sleep Disorder' ของ DataFrame df โดยจะคืนค่าเป็นอาร์เรย์ที่ประกอบด้วยค่าที่ไม่ซ้ำกันในคอลัมน์นั้น รวมถึงค่า NaN หากมี
 df['Sleep Disorder'].fillna('No Sleep Disorder', inplace=True) #ใช้เพื่อ แทนที่ค่า NaN  ในคอลัมน์ 'Sleep Disorder' ด้วยค่า 'No Sleep Disorder' โดยทำการแก้ไข DataFrame ต้นฉบับ
+#----------------------------------------------------------------------------------------------
+# การหาค่าผิดปกติ
+# print(df.info())
+'''
+numeric_col = ['Age', 'Sleep Duration', 'Quality of Sleep', 'Physical Activity Level', 'Stress Level', 'Heart Rate', 'Daily Steps']
 
-print(df.info())
-
+fig = px.box(df, y=numeric_col, title="Outlier Detection in Numeric Columns")
+fig.show()'''
+#----------------------------------------------------------------------------------------------
